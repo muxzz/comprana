@@ -2,7 +2,7 @@
 
 Comprana es una aplicación web monolítica que permite comprar víveres desde casa y recibirlos en la puerta. Ofrece una amplia gama de productos, una interfaz intuitiva para buscar y comprar.
 
-video: https://youtu.be/8wZqrtXeqaA
+video: https://youtu.be/ZDsoQOYZTCI
 
 ## Contenido
 
@@ -43,7 +43,7 @@ Así es como puede ejecutar el proyecto localmente:
 
 1. Clonar repositorio
     ```sh
-    git clone https://github.com/stivenm0/comprana.git
+    git clone https://github.com/estivenm0/comprana.git
     ```
 
 1. Ingresa al directorio raíz del proyecto
@@ -95,7 +95,7 @@ Así es como puede ejecutar el proyecto localmente:
 * Filament 
 * MySQL
 * TailwindCss
-* Apine
+* Alpine.js
 
 ## DB
 ![DB](https://raw.github.com/stivenm0/comprana/main/public/img/compranaDB.jpg)
