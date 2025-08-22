@@ -43,7 +43,7 @@ Así es como puede ejecutar el proyecto localmente:
 
 1. Clonar repositorio
     ```sh
-    git clone https://github.com/estivenm0/comprana.git
+    git clone https://github.com/muxzz/comprana.git
     ```
 
 1. Ingresa al directorio raíz del proyecto
