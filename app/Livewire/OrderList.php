@@ -11,24 +11,22 @@ use Livewire\WithPagination;
 
 class OrderList extends Component
 {
-
     use WithPagination;
 
     #[Url()]
     public $status = '';
 
     #[Computed()]
-    public function orders(){
+    public function orders()
+    {
         $query = Order::whereNotNull('payment_id')->where('user_id', Auth::user()->id)->orderBy('id', 'desc');
 
-        if($this->status != ''){
+        if ($this->status != '') {
             $query->where('status', $this->status);
         }
 
         return $query->paginate(5);
     }
-
-
 
     public function render()
     {

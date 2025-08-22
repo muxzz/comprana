@@ -15,18 +15,15 @@ class ImageObserver
         //
     }
 
-    public function updating(Image $image) : void 
-    {   
+    public function updating(Image $image): void
+    {
         Storage::disk('images')->delete($image->getOriginal('name'));
     }
 
     /**
      * Handle the Image "updated" event.
      */
-    public function updated(Image $image): void
-    {    
-
-    }
+    public function updated(Image $image): void {}
 
     /**
      * Handle the Image "deleted" event.

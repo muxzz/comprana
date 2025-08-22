@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Order;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class OrderPolicy
 {
@@ -24,7 +23,6 @@ class OrderPolicy
         return $user->role != 'USUARIO';
     }
 
-
     /**
      * Determine whether the user can update the model.
      */
@@ -32,5 +30,4 @@ class OrderPolicy
     {
         return $user->isDispatcher() || $user->isDelivery();
     }
-
 }

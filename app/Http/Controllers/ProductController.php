@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Section;
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 
@@ -16,11 +15,10 @@ class ProductController extends Controller
     {
         $sections = Cache::remember('sections', Carbon::now()->addDay()->diffInSeconds(), function () {
             return Section::get('name');
-        });   
-        
-        return view('products.index',[
-            'sections'=> $sections
+        });
+
+        return view('products.index', [
+            'sections' => $sections,
         ]);
     }
-
 }

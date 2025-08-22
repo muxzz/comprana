@@ -30,15 +30,10 @@ class ProductObserver
         }
     }
 
-    
-
     /**
      * Handle the Product "deleted" event.
      */
-    public function deleted(Product $product): void
-    {
-        
-    }
+    public function deleted(Product $product): void {}
 
     /**
      * Handle the Product "restored" event.

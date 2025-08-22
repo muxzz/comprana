@@ -17,49 +17,40 @@ class Product extends Model
         'description',
         'price',
         'stock',
-        'section_id'
+        'section_id',
     ];
-
 
     protected $casts = [
         'price' => 'int',
         // 'images' => 'array',
     ];
+
     /**
      * Get the section that owns the Product
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function section(): BelongsTo
     {
         return $this->belongsTo(Section::class);
     }
 
-
     /**
      * Get all of the images for the Product
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
     }
 
-
     /**
      * Get the image associated with the Product
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function image(): HasOne
     {
         return $this->hasOne(Image::class);
     }
 
-    public function scopeSearch($query, string $search = '') 
+    public function scopeSearch($query, string $search = '')
     {
         $query->where('name', 'LIKE', "%{$search}%");
     }
-
 }

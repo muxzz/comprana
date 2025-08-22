@@ -10,17 +10,18 @@ use Illuminate\Support\Facades\Http;
 class WebhooksController extends Controller
 {
     //
-    public function __invoke(Request $request){
+    public function __invoke(Request $request)
+    {
         $order = Order::find($request['order']);
 
         $response = Http::withToken(config('services.mercadopago.token'))
-        ->withUrlParameters([
-            'id' => $request['data']['id'],
-        ])
-        ->get('https://api.mercadopago.com/v1/payments/{id}');
+            ->withUrlParameters([
+                'id' => $request['data']['id'],
+            ])
+            ->get('https://api.mercadopago.com/v1/payments/{id}');
 
-        if($response->successful()){
-            if(is_null($order->payment_id)){
+        if ($response->successful()) {
+            if (is_null($order->payment_id)) {
                 CreateOrderEvent::dispatch($response['additional_info']['items'], $order);
                 $order->payment_id = $response['id'];
             }
@@ -28,7 +29,7 @@ class WebhooksController extends Controller
 
             $order->save();
 
-            return Response(status: 200); 
+            return Response(status: 200);
         }
     }
 }

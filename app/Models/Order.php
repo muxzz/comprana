@@ -10,7 +10,6 @@ class Order extends Model
 {
     use HasFactory;
 
-
     protected $fillable = [
         'user_id',
         'dispatcher_id',
@@ -23,7 +22,7 @@ class Order extends Model
         'payment_id',
     ];
 
-    const STATUS =  ['Procesando', 'En Camino', 'Entregado', 'No Entregado'];
+    const STATUS = ['Procesando', 'En Camino', 'Entregado', 'No Entregado'];
 
     protected $casts = [
         'total' => 'int',
@@ -32,8 +31,6 @@ class Order extends Model
 
     /**
      * Get the user that owns the Order
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(): BelongsTo
     {
@@ -42,18 +39,14 @@ class Order extends Model
 
     /**
      * Get the dispatcher that owns the Order
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function dispatcher(): BelongsTo
     {
         return $this->belongsTo(User::class, 'dispatcher_id', 'id');
     }
-    
 
     public function delivery(): BelongsTo
     {
         return $this->belongsTo(User::class, 'delivery_id', 'id');
     }
-
 }

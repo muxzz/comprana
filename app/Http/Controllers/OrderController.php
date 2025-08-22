@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\CreateOrderEvent;
 use App\Models\Cart;
 use App\Models\Order;
-use App\Notifications\OrderEmailNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -19,7 +17,7 @@ class OrderController extends Controller
     public function index()
     {
         return view('orders.index', [
-            'orderStatus' => Order::STATUS
+            'orderStatus' => Order::STATUS,
         ]);
     }
 
@@ -30,28 +28,29 @@ class OrderController extends Controller
     {
         $cart = Cart::find($id);
         $this->authorize('author', $cart);
+
         return view('orders.create', [
-            'cart'=> $cart
+            'cart' => $cart,
         ]);
     }
 
-    public function payOrder($id, Order $order) 
+    public function payOrder($id, Order $order)
     {
-        if($order->payment_id){
+        if ($order->payment_id) {
             return redirect()->route('orders.index');
         }
-        $cart = Cart::with(['products'=> function($q){
+        $cart = Cart::with(['products' => function ($q) {
             $q->select('name', 'price', 'stock')
-            ->where('stock', '>', 0);
+                ->where('stock', '>', 0);
         }])->find($id);
-        
+
         $this->authorize('author', $cart);
+
         return view('orders.pay', [
-            'cart'=> $cart,
-            'order'=> $order
+            'cart' => $cart,
+            'order' => $order,
         ]);
     }
-
 
     /**
      * Display the specified resource.
@@ -60,9 +59,9 @@ class OrderController extends Controller
     {
         $order = Order::with('user')->where('invoice', $name)->first();
 
-        if($order && $order->invoice){
+        if ($order && $order->invoice) {
             $user = Auth::user();
-            if($order->user->id === $user->id || $user->role != 'USUARIO'){
+            if ($order->user->id === $user->id || $user->role != 'USUARIO') {
                 return response()->file(Storage::disk('invoices')->path($order->invoice));
             }
         }
@@ -70,26 +69,25 @@ class OrderController extends Controller
 
     }
 
-    public function orderComplete(Order $order, Request $request){
+    public function orderComplete(Order $order, Request $request)
+    {
         $this->authorize('author', $order);
 
-        if($order->payment_id){
+        if ($order->payment_id) {
             return redirect()->route('orders.index');
         }
-        
-        $response = Http::withToken(config('services.mercadopago.token'))
-        ->withUrlParameters([
-            'id' => $request->payment_id,
-        ])
-        ->get('https://api.mercadopago.com/v1/payments/{id}');
 
-        if($response->successful()){
+        $response = Http::withToken(config('services.mercadopago.token'))
+            ->withUrlParameters([
+                'id' => $request->payment_id,
+            ])
+            ->get('https://api.mercadopago.com/v1/payments/{id}');
+
+        if ($response->successful()) {
             return view('orders.payComplete', [
-            'status'=> $response['status']
+                'status' => $response['status'],
             ]);
         }
         abort('404');
     }
-
-
 }

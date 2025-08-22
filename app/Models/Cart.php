@@ -15,8 +15,6 @@ class Cart extends Model
 
     /**
      * Get the user that owns the Cart
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(): BelongsTo
     {
@@ -25,8 +23,6 @@ class Cart extends Model
 
     /**
      * The products that belong to the Cart
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function products(): BelongsToMany
     {

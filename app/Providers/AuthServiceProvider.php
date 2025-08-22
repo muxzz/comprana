@@ -4,7 +4,6 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 
-use App\Livewire\Order;
 use App\Models\Cart;
 use App\Models\Order as ModelsOrder;
 use App\Policies\ResourcePolicy;

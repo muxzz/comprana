@@ -14,9 +14,8 @@ class ResourcePolicy
         //
     }
 
-    public function author(User $user, Object $resource)  {
+    public function author(User $user, object $resource)
+    {
         return $user->id === $resource->user_id ? true : abort(404);
-     } 
-
-
+    }
 }

@@ -2,21 +2,13 @@
 
 namespace App\Livewire;
 
-use App\Models\Cart;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
-use Livewire\Attributes\Reactive;
-use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class CartProductsList extends Component
 {
-
     public $cart;
-    
+
     public function placeholder()
     {
         return <<<'HTML'
@@ -27,12 +19,12 @@ class CartProductsList extends Component
         </div>
         HTML;
     }
- 
 
     #[On('refresh')]
     public function render()
     {
-        $this->cart->products()->with('image')->get(); 
+        $this->cart->products()->with('image')->get();
+
         return view('livewire.cart-products-list');
     }
 }

@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Image>
@@ -18,9 +17,10 @@ class ImageFactory extends Factory
      */
     public function definition(): array
     {
-        $path = fake()->image('public/storage/images' );
+        $path = fake()->image('public/storage/images');
 
         $name = basename($path);
+
         return [
             // 'product_id'=> Product::inRandomOrder()->pluck('id')->first(),
             'name' => $name,

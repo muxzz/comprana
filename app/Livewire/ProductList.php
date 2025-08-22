@@ -11,7 +11,6 @@ use Livewire\WithPagination;
 
 class ProductList extends Component
 {
-
     use WithPagination;
 
     #[Url()]
@@ -22,7 +21,6 @@ class ProductList extends Component
 
     #[Url()]
     public $order = 'asc';
-
 
     #[On('search')]
     public function updateSearch(string $value)
@@ -42,21 +40,21 @@ class ProductList extends Component
         HTML;
     }
 
-
     #[Computed()]
-    public function products()  {
-        $query = Product::select('id','name', 'price', 'stock', 'section_id')->search($this->search)
-        ->with(['image:product_id,name']);
-        
-        if($this->search != ''){
+    public function products()
+    {
+        $query = Product::select('id', 'name', 'price', 'stock', 'section_id')->search($this->search)
+            ->with(['image:product_id,name']);
+
+        if ($this->search != '') {
             $this->order = $this->order === 'asc' || $this->order === 'desc' ? $this->order : 'asc';
             $query->search($this->search)->orderBy('price', $this->order);
         }
 
-        if($this->section === ''){
+        if ($this->section === '') {
             $query->with('section:id,name')->orderBy('id', 'desc');
-        }else{
-            $query->whereHas('section', function($query){
+        } else {
+            $query->whereHas('section', function ($query) {
                 $query->where('name', $this->section);
             });
         }

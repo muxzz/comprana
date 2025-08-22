@@ -15,14 +15,10 @@ class Image extends Model
         'name',
     ];
 
-    
-
     public $timestamps = false;
 
     /**
      * Get the product that owns the Image
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function product(): BelongsTo
     {

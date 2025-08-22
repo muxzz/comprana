@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Events\CreateOrderEvent;
-use App\Listeners\CreateUserCarts;
 use App\Listeners\GenerateInvoiceListener;
 use App\Listeners\SendEmailOrderListener;
 use App\Models\Image;
@@ -30,7 +29,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         CreateOrderEvent::class => [
             GenerateInvoiceListener::class,
-            SendEmailOrderListener::class
+            SendEmailOrderListener::class,
         ],
     ];
 

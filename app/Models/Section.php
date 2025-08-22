@@ -11,20 +11,16 @@ class Section extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     public $timestamps = false;
 
-
     /**
      * Get all of the products for the Section
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
     }
-
 }

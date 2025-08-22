@@ -90,9 +90,9 @@ Así es como puede ejecutar el proyecto localmente:
 
 ## Tecnologías
 
-* Laravel 10
+* Laravel 11
 * Livewire 3
-* Filament 
+* Filament 4
 * MySQL
 * TailwindCss
 * Alpine.js

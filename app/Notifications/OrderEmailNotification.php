@@ -4,7 +4,6 @@ namespace App\Notifications;
 
 use App\Models\Order;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -36,9 +35,9 @@ class OrderEmailNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('Pedido #'. $this->order->id)
-                    ->action('Ver pedidos', url('/pedidos'))
-                    ->line('Gracias por su compra su pedido esta en proceso!');
+            ->line('Pedido #'.$this->order->id)
+            ->action('Ver pedidos', url('/pedidos'))
+            ->line('Gracias por su compra su pedido esta en proceso!');
     }
 
     /**

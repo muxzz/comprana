@@ -17,8 +17,8 @@ class UserObserver
         for ($i = 0; $i < 8; $i++) {
             $carts[] = [
                 'user_id' => $user->id,
-                'name' => "Carrito". $i + 1,
-                'active' => $i === 0 ? true : false
+                'name' => 'Carrito'.$i + 1,
+                'active' => $i === 0 ? true : false,
             ];
         }
 

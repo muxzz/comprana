@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class UserPolicy
 {
@@ -22,6 +21,7 @@ class UserPolicy
     {
         return $user->isAdmin();
     }
+
     /**
      * Determine whether the user can create models.
      */
@@ -45,5 +45,4 @@ class UserPolicy
     {
         return $user->isAdmin();
     }
-    
 }

@@ -28,9 +28,9 @@ class CleanOrders extends Command
     public function handle()
     {
         $fechaHaceUnMes = Carbon::now()->subMonth();
-        
+
         Order::whereNull('payment_id')
-        ->where('created_at', '<', $fechaHaceUnMes)
-        ->delete();
+            ->where('created_at', '<', $fechaHaceUnMes)
+            ->delete();
     }
 }

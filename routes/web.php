@@ -5,9 +5,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebhooksController;
-use App\Models\Product;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,11 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
     Route::get('/carritos', [CartController::class, 'index'])->name('carts.index');
 
-    Route::get('/carritos/{cart}', [CartController::class, 'show'])->name('carts.show'); 
-    
+    Route::get('/carritos/{cart}', [CartController::class, 'show'])->name('carts.show');
+
     Route::get('/carritos/{id}/ordenar', [OrderController::class, 'create'])->name('orders.create');
 
     Route::get('/carritos/{id}/ordenar/{order}', [OrderController::class, 'payOrder'])->name('orders.pay');
@@ -44,7 +41,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/facturas/{name}', [OrderController::class, 'showInvoice'])->name('orders.invoice');
 });
 
-    Route::post('/webhooks', WebhooksController::class)->name('webhooks');
-
+Route::post('/webhooks', WebhooksController::class)->name('webhooks');
 
 require __DIR__.'/auth.php';
